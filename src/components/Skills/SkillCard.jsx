@@ -7,7 +7,7 @@ const SkillCard = ({ title, iconUrl, isActive, onClick }) => {
             onClick={() => onClick()}
         >
 
-            <div className="w-16 h-16 flex justify-center items-center bg-gradient-to-r from-pink-300 to-purple-200 rounded-md border border-pink-700 absolute -top-3 -left-5">
+            <div className="w-16 h-16 flex justify-center items-center bg-gradient-to-r from-pink-300 to-purple-200 rounded-md border border-pink-700 absolute -top-3 -left-0">
                 <img src={iconUrl} alt={title} className="w-10 h-auto object-contain"/>
             </div>
 
