@@ -1,54 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
+
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const {
+    register,
+    handleSubmit,
 
-  const [statusMessage] = useState('');
-  const [errors, setErrors] = useState({});
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const validateForm = () => {
-    let formErrors = {};
-    if (!formData.name) formErrors.name = "Full Name is required";
-    if (!formData.email) formErrors.email = "Email Address is required";
-    if (!formData.message) formErrors.message = "Message is required";
-    return formErrors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length === 0) {
-      try {
-        const response = await axios.post('http://localhost:5000/contact', formData);
-        if (response.status === 201) {
-          toast.success('Your message has been sent!');
-          setFormData({
-            name: '',
-            email: '',
-            message: ''
-          });
-        }
-      } catch (error) {
-        toast.error('Failed to send message.');
-      }
-    } else {
-      setErrors(formErrors);
+  const onSubmit = async (data) => {
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+      message: data.message,
+    };
+    try {
+      await axios.post("https://getform.io/f/bvrerzwb", userInfo);
+      toast.success("Your message has been sent");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
   };
-
   return (
     <>
       <div name="Contact" className='max-w-screen-2xl container mx-auto px-4 md:px-20 my-16'>
@@ -57,7 +33,7 @@ function Contact() {
         <br />
         <div className='flex flex-col md:flex-row gap-8'>
 
-        <div className='flex-1 mt-8 md:mt-0 order-1 md:order-2'>
+          <div className='flex-1 mt-8 md:mt-0 order-1 md:order-2'>
             <div className='bg-white-100 w-98 px-8 py-6 rounded-xl'>
               <div className="flex items-center justify-center mb-4">
                 <img src='/assests/images/gmail.png' alt='' className="w-10 h-16 mr-2 object-contain" />
@@ -70,53 +46,58 @@ function Contact() {
               <p className="text-sm font-normal flex items-center justify-center">Contact: 9997141587</p>
             </div>
           </div>
-          
+
 
 
           <div className='flex-1 mt-8 md:mt-0 order-1 md:order-2'>
-            <form onSubmit={handleSubmit} className='bg-blue-100 w-98 px-8 py-6 rounded-xl'>
+            <form onSubmit={handleSubmit(onSubmit)}
+             // action='https://getform.io/f/bvrerzwb'
+              //method='POST'
+              className='bg-blue-100 w-98 px-8 py-6 rounded-xl'>
               <h1 className='text-xl font-semibold mb-4'>Send Your Message</h1>
               <div className='flex flex-col mb-4'>
                 <label className='block text-grey-700'>Full Name</label>
                 <input
+                  {...register("name", { required: true })}
                   className="shadow rounded-lg appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id='name'
                   name="name"
                   type="text"
-                  value={formData.name}
-                  onChange={handleChange}
                   placeholder="Enter your fullname"
                 />
-                {errors.name && <p className="text-red-500 text-xs italic">{errors.name}</p>}
+                {errors.name && <span>This Field is required</span>}
               </div>
               <div className='flex flex-col mb-4'>
                 <label className='block text-gray-700'>Email Address</label>
                 <input
+                  {...register("email", { required: true })}
                   className="shadow rounded-lg appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id='email'
                   name="email"
                   type="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   placeholder="Enter your email"
                 />
-                {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
+                {errors.email && <span>This Field is required</span>}
+
               </div>
               <div className='flex flex-col mb-4'>
                 <label className='block text-gray-700'>Message</label>
                 <textarea
+                  {...register("message", { required: true })}
                   className="shadow rounded-lg appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id='message'
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Type Your Message Here!"
+                  type="text"
+                  placeholder="Enter Your Query!"
                 />
-                {errors.message && <p className="text-red-500 text-xs italic">{errors.message}</p>}
+                {errors.message && <span>This Field is required</span>}
+
               </div>
-              <button className="bg-gradient-to-r from-pink-400 to-purple-300 hover:from-blue-400 hover:to-purple-400 rounded-md border border-pink-700 text-white font-bold py-2 px-4">Send</button>
-              {statusMessage && <p className="mt-4 text-green-600">{statusMessage}</p>}
+              <button type='submit' className="bg-gradient-to-r from-pink-400 to-purple-300 hover:from-blue-400 hover:to-purple-400 rounded-md border border-pink-700 text-white font-bold py-2 px-4">Send</button>
             </form>
           </div>
 
-        
+
         </div>
       </div>
       <hr />
