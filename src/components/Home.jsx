@@ -1,11 +1,5 @@
 import React from 'react'
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
 import { ReactTyped } from "react-typed";
-import { RiReactjsLine } from "react-icons/ri";
-import { IoLogoNodejs } from "react-icons/io5";
-import { DiMongodb } from "react-icons/di";
-import { SiExpress } from "react-icons/si";
 
 
 function Home() {
@@ -26,44 +20,43 @@ function Home() {
                         <br />
                         <br />
                         <p className='text-1xl md:text-md text-justify'>
-                            Welcome to My PortFolio!  I'm a web developer passionate about creating 
-                            innovative and dynamic websites. I love learning new things every day and 
+                            Welcome to My PortFolio!  I'm a web developer passionate about creating
+                            innovative and dynamic websites. I love learning new things every day and
                             continuously enhancing my skills.
                         </p>
                         <br />
                         <br />
                         <br />
                         {/*Social Media Icon */}
-                        <div className='flex flex-col items-center md:flex-row justify-between space-y-6 md:space-y-1'>
-                            <div className='space-y-2'>
+                        <div className='flex flex-col items-center md:flex-row justify-between space-x-7 space-y-7 md:space-y-1'>
+                            <div className='space-y-2 space-x-3'>
                                 <h1 className='font-bold'>Available On</h1>
-                                <ul className='flex space-x-5'>
+                                <ul className='flex space-x-2'>
                                     <li >
                                         <a href="https://github.com/artikaintura" target="_blank" rel="noopener noreferrer">
-                                            <FaGithub className='bg-gradient-to-r from-pink-300 to-purple-200 hover:from-purple-400 hover:to-pink-400 rounded-md border border-purple-900 text-3xl cursor-pointer' />
-                                        </a>
+                                        <img src='/assests/images/github.png' className="w-9 h-9 object-cover rounded-lg hover:scale-110 shadow-md" alt="React JS Logo" /> </a>
                                     </li>
                                     <li>
                                         <a href="https://www.linkedin.com/in/arti-kaintura-9b8931227/" target="_blank" rel="noopener noreferrer">
-                                            <FaLinkedin className='bg-gradient-to-r from-pink-300 to-purple-200 hover:from-purple-400 hover:to-pink-400 rounded-md border border-purple-900  text-3xl cursor-pointer' />
-                                        </a>
+                                        <img src='/assests/images/linkedIn.png' className="w-8 h-8 object-cover rounded-lg  hover:scale-110 shadow-md" alt="React JS Logo" />
+                                          </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div className='space-y-2'>
+                            <div className='space-y-2 space-x-3'>
                                 <h1 className='font-bold'>Currently Working On</h1>
-                                <ul className='flex space-x-5'>
+                                <ul className='flex space-x-2'>
                                     <li >
-                                        <RiReactjsLine className='bg-gradient-to-r from-pink-300 to-purple-200 hover:from-purple-400 hover:to-pink-400 rounded-md border border-purple-900 text-3xl cursor-pointer' />
+                                        <img src='/assests/images/reactjs.png' className="w-8 h-8 object-cover rounded-lg hover:scale-110 shadow-md" alt="React JS Logo" />
                                     </li>
                                     <li>
-                                        <SiExpress className='bg-gradient-to-r from-pink-300 to-purple-200 hover:from-purple-400 hover:to-pink-400 rounded-md border border-purple-900  text-3xl cursor-pointer' />
+                                        <img src='/assests/images/express.png' className="w-9 h-9 object-cover rounded-lg hover:scale-110 shadow-md" alt="React JS Logo" />
                                     </li>
                                     <li>
-                                        <IoLogoNodejs className='bg-gradient-to-r from-pink-300 to-purple-200 hover:from-purple-400 hover:to-pink-400 rounded-md border border-purple-900  text-3xl cursor-pointer' />
+                                        <img src='/assests/images/mongodb.jpg' className="w-9 h-9 object-cover rounded-lg hover:scale-110 shadow-md" alt="React JS Logo" />
                                     </li>
                                     <li>
-                                        <DiMongodb className='bg-gradient-to-r from-pink-300 to-purple-200 hover:from-purple-400 hover:to-pink-400 rounded-md border border-purple-900  text-3xl cursor-pointer' />
+                                        <img src='/assests/images/nodejs.png' className="w-8 h-8 object-cover rounded-lg hover:scale-110 shadow-md" alt="React JS Logo" />
                                     </li>
 
                                 </ul>

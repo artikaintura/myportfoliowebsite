@@ -2,7 +2,7 @@ import React from "react";
 
 const SkillsInfoCard = ({ heading, skills }) => {
     return (
-        <div className="p-4 bg-white rounded-lg shadow-lg">
+        <div className="p-4 bg-blue-100 rounded-lg shadow-lg">
             <h6 className="text-2xl font-semibold mb-4">{heading}</h6>
 
             <div className="space-y-4">

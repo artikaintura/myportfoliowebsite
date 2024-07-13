@@ -4,7 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    font-family:'Times New Roman', Times, serif;
-    background-color:white;
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color:rgba(238, 236, 233, 0.8)
+     /* Adjust the last value (0.1) for transparency */
 }

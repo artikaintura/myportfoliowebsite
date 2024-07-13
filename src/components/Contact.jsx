@@ -29,18 +29,17 @@ function Contact() {
     <>
       <div name="Contact" className='max-w-screen-2xl container mx-auto px-4 md:px-20 my-16'>
         <h1 className='text-3xl font-bold mb-4'>Contact <span className='text-red-700'>Me</span></h1>
-        <span className='block text-center'>Please Fill Out the form below to Contact Me</span>
-        <br />
-        <div className='flex flex-col md:flex-row gap-8'>
+        <span className='block text-center font-bold'>Please Fill Out the form below to Contact Me</span>
+        <div className='flex flex-col md:flex-row gap-0 md:gap-3'>
 
-          <div className='flex-1 mt-8 md:mt-0 order-1 md:order-2'>
-            <div className='bg-white-100 w-98 px-8 py-6 rounded-xl'>
-              <div className="flex items-center justify-center mb-4">
+          <div className='flex-1 mt-8 md:mt-3 order-1 md:order-2'>
+            <div className='mt-1 bg-blue-100 w-98 px-8 py-6 rounded-xl'>
+              <div className="flex items-center justify-center mt-10 mb-6">
                 <img src='/assests/images/gmail.png' alt='' className="w-10 h-16 mr-2 object-contain" />
               </div>
               <p className="text-sm font-normal flex items-center justify-center">Email: artikaintura274@gmail.com</p>
               <br />
-              <div className="flex items-center justify-center mb-4">
+              <div className="flex items-center justify-center mt-16 mb-5">
                 <img src='/assests/images/phone.png' alt='' className="w-10 h-16 mr-2 object-contain" />
               </div>
               <p className="text-sm font-normal flex items-center justify-center">Contact: 9997141587</p>
@@ -49,11 +48,11 @@ function Contact() {
 
 
 
-          <div className='flex-1 mt-8 md:mt-0 order-1 md:order-2'>
+          <div className='flex-1 mt-8 md:mt-3 order-1 md:order-2'>
             <form onSubmit={handleSubmit(onSubmit)}
              // action='https://getform.io/f/bvrerzwb'
               //method='POST'
-              className='bg-blue-100 w-98 px-8 py-6 rounded-xl'>
+              className='mt-1 bg-blue-100 w-98 px-8 py-6 rounded-xl'>
               <h1 className='text-xl font-semibold mb-4'>Send Your Message</h1>
               <div className='flex flex-col mb-4'>
                 <label className='block text-grey-700'>Full Name</label>
