@@ -1,99 +1,64 @@
-import React from 'react';
-
+import React from 'react'
+import Header from './Header';
+import Footer from './Footer';
+import portfolioImageUrl from '../assets/images/portfolio.png';
+import financeUmageUrl from '../assets/images/finance.jpg'
+import chatImageUrl from '../assets/images/chats.jpg';
 function Project() {
-  const cardItem = [
-    {
-      title: "PortFolio",
-      img:"/assests/images/portfolio.jpg",
-      desc:"I have designed and developed a dynamic portfolio website using React.js, Tailwind CSS, MongoDB, and Express.",
-      link: [
-        ""
-      ],
-    },
-    {
-      title: "Chat App",
-      img:"/assests/images/chat.jpg",
-      desc: "I have designed a real-time chat application enabling useds to send and receive messages using Reactjs, Nodejs, MongoDB, Expressjs",
-      link: [
-        "https://github.com/artikaintura/CHATAPP"
-      ],
-    },
-    {
-      title: "Bat Ball & Stump",
-      img:"/assests/images/cric.webp",
-      desc: "I have designed a dynamic web project 'Bat, Ball, and Stump' using HTML, CSS, and JavaScript.",
-      link: [
-        "https://github.com/artikaintura/Bat-Ball-Stump"
-      ],
-    },
-    {
-      title: "Weather App",
-      img:"/assests/images/weather.jpeg",
-      desc:"I have designed a Weather application that provides real-time weather updates for any location.",
-      link: [
-        "https://github.com/artikaintura/Weatherapp"
-      ],
-    },
-    {
-      title: "Calculator",
-      img:"/assests/images/cal.webp",
-      desc: "I have designed a robust and interactive Calculator application using Reactjs.",
-      link: [
-        "https://github.com/artikaintura/Calculator"
-      ],
-    },
-    {
-      title: "Curd Operation",
-      img:"/assests/images/crud.jpg",
-      desc: "I have designed a dynamic web application CRUD using HTML, CSS, Js ",
-      link: [
-        "https://github.com/artikaintura/crud-operations"
-      ],
-    },
-
-  ];
-
-
   return (
     <>
-      <div name="Projects" className='max-w-screen-2xl container mx-auto px-4 md:px-20 my-10'>
-        <h1 className='text-3xl font-bold mb-5'>My<span className='text-red-700'> Projects</span></h1>
+      <Header />
+      <section className="container mx-auto mt-12 my-8 md:p-20">
+        <div className=" bg-black bg-opacity-70 p-6 md:p-10">
+          <div className="shadow-md p-6 md:p-4 rounded flex flex-col  justify-center md:col-span-2">
+            <h1 className="text-2xl font-bold text-left w-full">
+              PROJECTS <span className="text-green-800 text-2xl px-4 inline-flex transform scale-x-150">-</span>
+            </h1>
+            <h2 className="text-2xl  text-left w-full pb-9">MY PROJECT</h2>
+          </div>
 
-        <div className=' grid grid-cols-1 md:grid-cols-4 gap-8 p-4'>
-          {
-            cardItem.map(({ title, desc, link, img }) => {
-              return (
-                <React.Fragment>
-                  <div className='bg-blue-100 border-[2px] rounded-lg shadow-lg p-4 cursor-pointer hover:scale-110 duration-300'>
-                 <div className="px-1 py-1 font-bold text-xl mb-2">
-                 <img src={img} alt={title} className='w-[120px] h-[120px] p-1 rounded-full border-[2px]' />
-                  
-                  </div>
-                    <div className="px-2 font-bold text-xl mb-2">
-                      {title}
-                    </div>
-                    <div className="px-1 mb-1" >
-                      <p className='text-justify'>{desc}</p>
-                    </div>
-                    <div className=" px-2 py-4 space-x-3 justify-around">
-                      <button onClick={() => window.open(link, "_blank", "noopener noreferrer")}
-                        className="bg-gradient-to-r from-pink-400 to-purple-300 hover:from-blue-400 hover:to-purple-400 text-white font-bold px-4 py-2 rounded">
-                        Source Code
-                      </button>
-                    </div>
+          <div className="w-full grid md:grid-cols-3 gap-5 p-6 ">
+          <a href='https://github.com/artikaintura/Calculator' target="_blank" rel="noopener noreferrer">
+              <div className="bg-black bg-opacity-55  hover:bg-green-800 shadow-lg rounded-lg p-4 text-center flex flex-col  h-full">
+                <img src={chatImageUrl} alt="Chat background" className="mx-auto my-auto mb-4 w-20 h-20" style={{ boxShadow: '1px 2px 10px 7px white' }} />
+                <h1 className="text-xl font-bold mb-2">ChatApp</h1>
+                <p className="text-justify">
+                  A ChatApp using HTML, JavaScript, and React for the frontend, styled with Tailwind CSS for a modern and responsive design.
+                  The backend is powered by Node.js, with real-time communication handled by Socket.io. The website is connected to MongoDB for data storage.
+                  Additionally, we developed a Chat App as part of the project, enabling real-time messaging between users, without using an external API,
+                  ensuring a smooth, scalable, and interactive experience.
+                </p>
+              </div>
+            </a>
+          
+            <a href='/' target="_blank" rel="noopener noreferrer">
+              <div className="bg-black bg-opacity-55  hover:bg-green-800 shadow-lg rounded-lg p-4 text-center flex flex-col h-full">
+                <img src={financeUmageUrl} alt="Chat background" className="mx-auto my-auto mb-4 w-20 h-20 " style={{ boxShadow: '1px 2px 10px 7px white' }} />
+                <h1 className="text-xl font-bold mb-2">Analysis of Personal Finance</h1>
+                <p className="text-justify">The “Analysis of Personal Finance Using Machine Learning”
+                  Utilized advanced data processing and predictive
+                  modeling to analyze financial behavior, forecast trends, and provide
+                  actionable recommendations for better financial decision-making.
+                </p>
+              </div>
+            </a>
+            <a href='/' target="_blank" rel="noopener noreferrer">
+              <div className="bg-black  bg-opacity-55 hover:bg-green-800 shadow-lg rounded-lg p-4 text-center flex flex-col h-full">
+                <img src={portfolioImageUrl} alt="Chat background" className="mx-auto my-auto mb-4 w-20 h-20" style={{ boxShadow: '1px 2px 10px 7px white' }} />
+                <h1 className="text-xl font-bold mb-2">PortFolio</h1>
+                <p className="text-justify">
+                  A portfolio website using HTML, JavaScript, and React for the frontend, styled with Tailwind CSS to ensure a modern and responsive design.
+                </p>
+              </div>
+            </a>
+          </div>
 
-                  </div>
-
-                </React.Fragment>
-              );
-            })
-          }
 
         </div>
-
-      </div>
+      </section>
+      <Footer />
     </>
-  );
+  )
 }
 
 export default Project;

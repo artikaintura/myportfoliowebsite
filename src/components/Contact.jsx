@@ -1,107 +1,124 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import { IoCall, IoLocation, IoMail } from 'react-icons/io5';
+import { FaShareNodes } from "react-icons/fa6";
 import axios from 'axios';
-import toast from 'react-hot-toast';
-import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Contact() {
-  const {
-    register,
-    handleSubmit,
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = async (data) => {
-    const userInfo = {
-      name: data.name,
-      email: data.email,
-      message: data.message,
-    };
-    try {
-      await axios.post("https://getform.io/f/bvrerzwb", userInfo);
-      toast.success("Your message has been sent");
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast.error('Please fill in all fields.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
+
+
+    toast.success('Your message has been sent successfully!');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+
+  };
+
   return (
     <>
-      <div name="Contact" className='max-w-screen-2xl container mx-auto px-4 md:px-20 my-16'>
-        <h1 className='text-3xl font-bold mb-4'>Contact <span className='text-red-700'>Me</span></h1>
-        <span className='block text-center font-bold'>Please Fill Out the form below to Contact Me</span>
-        <div className='flex flex-col md:flex-row gap-0 md:gap-3'>
+      <Header />
+      <ToastContainer position="top-right" autoClose={3000} />
+      <section className="container mx-auto mt-12 my-8 md:p-20">
+        <div className='bg-black bg-opacity-70 p-6 md:p-10'>
+          <div className="shadow-md p-6 md:p-4 rounded flex flex-col justify-center md:col-span-2">
+            <h1 className="text-2xl font-bold text-left w-full">
+              CONTACT <span className="text-green-800 text-2xl px-4 inline-flex transform scale-x-150">-</span>
+            </h1>
+            <h2 className="text-2xl text-left w-full pb-9">CONTACT ME</h2>
+          </div>
 
-          <div className='flex-1 mt-8 md:mt-3 order-1 md:order-2'>
-            <div className='mt-1 bg-blue-100 w-98 px-8 py-6 rounded-xl'>
-              <div className="flex items-center justify-center mt-10 mb-6">
-                <img src='/assests/images/gmail.png' alt='' className="w-10 h-16 mr-2 object-contain" />
+          <div className="w-full p-6 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="bg-green-800 bg-opacity-80 p-4 rounded-md flex flex-row gap-4">
+              <div className='flex items-center justify-center rounded-full w-9 h-9 bg-black bg-opacity-60'>
+                <IoLocation size={24} />
               </div>
-              <p className="text-sm font-normal flex items-center justify-center">Email: artikaintura274@gmail.com</p>
-              <br />
-              <div className="flex items-center justify-center mt-16 mb-5">
-                <img src='/assests/images/phone.png' alt='' className="w-10 h-16 mr-2 object-contain" />
+              <div className="text-white space-y-2">
+                <h1 className="font-bold text-white">My Address</h1>
+                <p>India, Dehradun, Uttarakhand</p>
               </div>
-              <p className="text-sm font-normal flex items-center justify-center">Contact: 9997141587</p>
+            </div>
+
+            <div className="bg-green-800 bg-opacity-80 p-4 rounded-md flex flex-row gap-4">
+              <div className='flex items-center justify-center rounded-full w-9 h-9 bg-black bg-opacity-60'>
+                <FaShareNodes size={24} />
+              </div>
+              <div className="text-white space-y-2">
+                <h1 className="font-bold text-white text-lg">Social Profile</h1>
+                <p className="text-gray-200 text-sm text-center">
+                  Connect with us on our social media platforms to stay updated!
+                </p>
+              </div>
             </div>
           </div>
 
-
-
-          <div className='flex-1 mt-8 md:mt-3 order-1 md:order-2'>
-            <form onSubmit={handleSubmit(onSubmit)}
-             // action='https://getform.io/f/bvrerzwb'
-              //method='POST'
-              className='mt-1 bg-blue-100 w-98 px-8 py-6 rounded-xl'>
-              <h1 className='text-xl font-semibold mb-4'>Send Your Message</h1>
-              <div className='flex flex-col mb-4'>
-                <label className='block text-grey-700'>Full Name</label>
+          <div className="p-6 md:p-4 w-full">
+            <form className="space-y-3" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
-                  {...register("name", { required: true })}
-                  className="shadow rounded-lg appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id='name'
+                  className="bg-green-800 bg-opacity-80 shadow rounded-lg w-full border py-2 px-3 text-white"
                   name="name"
                   type="text"
-                  placeholder="Enter your fullname"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
                 />
-                {errors.name && <span className='text-red-600'>This Field is required</span>}
-              </div>
-              <div className='flex flex-col mb-4'>
-                <label className='block text-gray-700'>Email Address</label>
                 <input
-                  {...register("email", { required: true })}
-                  className="shadow rounded-lg appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id='email'
+                  className="bg-green-800 bg-opacity-80 shadow rounded-lg w-full border py-2 px-3 text-white"
                   name="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
-                {errors.email && <span className='text-red-600'>This Field is required</span>}
-
               </div>
-              <div className='flex flex-col mb-4'>
-                <label className='block text-gray-700'>Message</label>
-                <textarea
-                  {...register("message", { required: true })}
-                  className="shadow rounded-lg appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id='message'
-                  name="message"
-                  type="text"
-                  placeholder="Enter Your Query!"
-                />
-                {errors.message && <span className='text-red-600'>This Field is required</span>}
-
+              <input
+                className="bg-green-800 bg-opacity-80 shadow rounded-lg w-full border py-2 px-3 text-white"
+                name="subject"
+                type="text"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={handleChange}
+              />
+              <textarea
+                className="bg-green-800 bg-opacity-80 shadow rounded-lg w-full border py-2 px-3 text-white"
+                name="message"
+                placeholder="Message"
+                value={formData.message}
+                onChange={handleChange}
+              />
+              <div className="w-full flex justify-center items-center">
+                <button className="py-2 bg-green-800 text-white font-semibold rounded md:w-40 w-36 hover:bg-green-600 transition duration-300" type='submit'>
+                  Send Message
+                </button>
               </div>
-              <button type='submit' className="bg-gradient-to-r from-pink-400 to-purple-300 hover:from-blue-400 hover:to-purple-400 rounded-md border border-pink-700 text-white font-bold py-2 px-4">Send</button>
             </form>
           </div>
-
-
         </div>
-      </div>
-      <hr />
+      </section>
+      <Footer />
     </>
-  )
+  );
 }
 
 export default Contact;
