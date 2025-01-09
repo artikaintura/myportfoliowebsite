@@ -4,6 +4,7 @@ import Footer from './Footer';
 import { IoCall, IoLocation, IoMail } from 'react-icons/io5';
 import { FaShareNodes } from "react-icons/fa6";
 import { ToastContainer, toast } from 'react-toastify';
+import emailjs from '@emailjs/browser';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Contact() {
@@ -28,10 +29,18 @@ function Contact() {
       return;
     }
 
+    const serviceID = 'service_jli2see';   
+    const templateID = 'template_wc8eppd'; 
+    const publicKey = 'hBh-HAm8vmVTIs3Fw'; 
 
-    toast.success('Your message has been sent successfully!');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-
+    try {
+      await emailjs.send(serviceID, templateID, formData, publicKey);
+      toast.success('Your message has been sent successfully!');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+      console.error('EmailJS Error:', error);
+    }
   };
 
   return (
@@ -69,7 +78,7 @@ function Contact() {
                 </p>
               </div>
             </div>
-           
+
             <div className="bg-green-800 bg-opacity-80 p-4 rounded-md flex flex-row gap-4">
               <div className='flex items-center justify-center rounded-full w-9 h-9 bg-black bg-opacity-60'>
                 <IoMail size={24} />
