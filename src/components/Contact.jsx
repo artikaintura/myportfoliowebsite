@@ -3,7 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 import { IoCall, IoLocation, IoMail } from 'react-icons/io5';
 import { FaShareNodes } from "react-icons/fa6";
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -68,6 +67,26 @@ function Contact() {
                 <p className="text-gray-200 text-sm text-center">
                   Connect with us on our social media platforms to stay updated!
                 </p>
+              </div>
+            </div>
+           
+            <div className="bg-green-800 bg-opacity-80 p-4 rounded-md flex flex-row gap-4">
+              <div className='flex items-center justify-center rounded-full w-9 h-9 bg-black bg-opacity-60'>
+                <IoMail size={24} />
+              </div>
+              <div className="text-white space-y-2">
+                <h1 className="font-bold text-white">Email Me</h1>
+                <p>artikaintura274@gmail.com</p>
+              </div>
+            </div>
+
+            <div className="bg-green-800 bg-opacity-80 p-4 rounded-md flex flex-row gap-4">
+              <div className='flex items-center justify-center rounded-full w-9 h-9 bg-black bg-opacity-60'>
+                <IoCall size={24} />
+              </div>
+              <div className="text-white space-y-2">
+                <h1 className="font-bold text-white">Call Me</h1>
+                <p>+91 999141587</p>
               </div>
             </div>
           </div>
